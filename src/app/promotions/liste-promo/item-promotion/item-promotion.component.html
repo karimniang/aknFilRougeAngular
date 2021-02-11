@@ -1,0 +1,29 @@
+<div class="card">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{this.promotion.titre |uppercase}}
+            <a title="Details de la promo" [routerLink]="[ '/accueil/promo/detail',promotion.id ]"
+                class="btn btn-sm btn-outline-warning float-right"><i class="fas fa-info"></i></a>
+            <a title="Supprimer cette promo" class="btn btn-sm btn-outline-danger mr-2 float-right"><i class="fas fa-times"></i></a>
+        </li>
+        <span class="border-top border-primary"></span>
+    </ul>
+    <div class="card-body">
+        <p class="card-text">{{this.promotion.description}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <p style="text-decoration: underline;">Referentiels :</p>
+            <p *ngFor="let referentiel of promotion.referentiels">{{referentiel.libelle}}</p>
+        </li>
+    </ul>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Fabrique : {{promotion.fabrique}}</li>
+    </ul>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Langue : {{promotion.langue}}</li>
+    </ul>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{promotion.dateDebut |date }} à {{promotion.dateFin |date }}</li>
+        <span class="border-bottom border-success"></span>
+    </ul>
+</div>

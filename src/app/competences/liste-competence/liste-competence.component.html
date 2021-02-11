@@ -1,0 +1,34 @@
+<div class="p-4">
+    <div class="row nav-menu">
+        <h4 class="col align-self-start">Liste des competences</h4>
+        <div class="">
+            <a [routerLink]="[ '/accueil/competence/add' ]" class="btn btn-outline-primary"><i class="fas fa-plus"></i></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 overflow-auto shadow mt-4 mx-auto menu-compt" style="height: 400px;">
+            <!-- <ul class="text-center p-2 navbar-nav">
+                <li>
+                    <p>Veuillez choisir une compétence</p>
+                </li>
+                <li *ngFor="let competence of this.competences" class="nav-item">
+                    <a  [routerLink]="[ '/accueil/competence/liste/',competence.id ,'niveau']" class="nav-link">{{competence.libelle}}</a>
+                </li>
+            </ul> -->
+            <p>Veuillez choisir un groupe de compétences</p>
+            <select class="form-control" name="groupeCpt" id="" (click)="choiceGroupe()" [(ngModel)]="id">
+                <option *ngFor="let grpComp of this.grpCompetences" value="{{this.grpComp.id}}"><a [routerLink]="[ '/path' ]">{{grpComp.libelle}}</a></option>
+            </select>
+            <ul *ngIf="this.groupeCpt" class="text-center p-2 navbar-nav">
+                <li *ngFor="let competence of this.groupeCpt.competences; let i=index" class="nav-item">
+                    <a [routerLink]="[ '/accueil/competence/liste/',competence.id ,'niveau']" class="nav-link">{{competence.libelle}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-7 mx-auto mt-4 shadow">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <!-- <app-item-competence *ngFor="let oneCompetence of this.competences" class="col-sm-4 mb-4" [competence]= "oneCompetence"></app-item-competence>     -->
+
+</div>

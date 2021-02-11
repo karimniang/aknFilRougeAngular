@@ -1,0 +1,12 @@
+<div class="p-4">
+    <h4 class="text-center">Liste des groupes de compétences</h4>
+    <a [routerLink]="[ '/accueil/grpe-competence/add' ]" class="btn btn-outline-primary mb-4"><i class="fas fa-plus"></i></a>
+    <div class="row">
+        <app-item-grpe-competence *ngFor="let onGrpComp of this.groupeCompetences |slice: (page-1) * pageSize : page * pageSize" [grpComp]="onGrpComp" class="col-sm-4 mb-4"></app-item-grpe-competence>
+    </div>
+    <hr>
+    <ngb-pagination
+      [(page)]="page"
+      [pageSize]="pageSize"
+      [collectionSize]="groupeCompetences.length"></ngb-pagination>
+</div>

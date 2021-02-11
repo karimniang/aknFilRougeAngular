@@ -1,0 +1,32 @@
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#niveau1">Niveau 1</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#niveau2">Niveau 2</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#niveau3">Niveau 3</a>
+    </li>
+</ul>
+
+<!-- Tab panes -->
+<div *ngIf="this.competence" class="tab-content">
+    <div *ngFor="let niveau of this.competence.niveaux; let i = index" class="tab-pane container" [class.active]="i === 0" id="{{ niveau.libelle }}">
+        <div class="row">
+            <div class="col-6 border">
+                <p>Critere Evaluation</p>
+                <hr />
+                {{ niveau.CritereEvaluation }}
+            </div>
+            <div class="col-6 border">
+                <p>Groupe Actions</p>
+                <hr />
+                {{ niveau.GroupeAction }}
+            </div>
+        </div>
+    </div>
+
+<a class="btn btn-sm btn-outline-danger mt-4" (click)="removeCompetence(this.competence.id)">Supprimer</a>
+<a [routerLink]="['/accueil/competence/edit',this.competence.id]" class="btn btn-sm btn-outline-warning mt-4 ml-4">Modifier</a>
+</div>  

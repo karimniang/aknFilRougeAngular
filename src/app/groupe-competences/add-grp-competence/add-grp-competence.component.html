@@ -1,0 +1,69 @@
+<div class="p-4">
+  <h4>Ajouter une groupe de compétence</h4>
+  <hr>
+  <div class="w-75 mx-auto">
+    <form action="" class="w-75" [formGroup]="this.groupeComptForm">
+      <div class="form-group">
+        <label for="libelle">Libelle</label>
+        <input type="text" class="form-control" formControlName="libelle" id="lib" aria-describedby="helpId"
+          placeholder="">
+        <small
+          *ngIf="groupeComptForm.controls['libelle'].invalid && (groupeComptForm.controls['libelle'].touched || groupeComptForm.controls['libelle'].dirty)"
+          id="helpId" class="form-text text-muted">Veuillez renseigner le libelle</small>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" formControlName="description"  id="desc" rows="3"></textarea>
+        <small
+          *ngIf="groupeComptForm.controls['description'].invalid && (groupeComptForm.controls['description'].touched || groupeComptForm.controls['description'].dirty)"
+          id="helpId" class="form-text text-muted">Veuillez renseigner la description</small>
+      </div>
+      <!-- <div class="form-group">
+              <label for="competences">Competences</label>
+              <input type="text"
+                class="form-control" name="competences" id="" aria-describedby="helpId" placeholder="">
+              <small id="helpId" class="form-text text-muted">Help text</small>
+            </div> -->
+      <div class="form-group">
+        <label for="referentiel">Competences</label>
+        <!-- <input class="form-control" type="text" id="referentiel" 
+          placeholder="Enter each competences and hit 'Enter' Key."  /> -->
+
+        <div class="ng-autocomplete">
+          <ng-autocomplete [data]="listeLibelle" [searchKeyword]="keyword" (keydown.enter)="onSkillsSetKeydown($event)" formControlName="competence" [itemTemplate]="itemTemplate"
+            [notFoundTemplate]="notFoundTemplate" (selected)="onSkillsSetKeydown($event)">
+          </ng-autocomplete>
+
+          <ng-template #itemTemplate let-item>
+            <a [innerHTML]="item.libelle"></a>
+          </ng-template>
+
+          <ng-template #notFoundTemplate let-notFound>
+            <div [innerHTML]="notFound"></div>
+          </ng-template>
+        </div>
+
+        <!-- <input type="text" class="form-control" name="referentiel" id="" aria-describedby="helpId" placeholder=""> -->
+        <!-- <div *ngFor="let skill of skills; let i = index" class="roundedcorner">
+                {{skill}}   
+                <i class="fa fa-times-circle" style="font-size:24px;color:red;" (click)="dropSkill(i)"></i>  
+              </div>  -->
+      </div>
+      <div class="row mb-2">
+        <div *ngFor="let oneCompetence of competences; let i = index" class="roundedcorner">
+          {{oneCompetence}}
+          <i title="Supprimer ce referentiel" class="fa fa-times-circle" style="font-size:20px;color:green;"
+            (click)="dropSkill(i)"></i>
+        </div>
+        <small *ngIf="this.groupeComptForm.valid && this.competences.length === 0" id="helpId" class="form-text text-muted">Veuillez renseigner les
+          competences</small>
+      </div>
+      <div>
+        <button type="reset" class="btn btn-danger" (click)="this.competences =[]">Reset</button>
+        <button class="btn btn-primary ml-4" (click)="onSubmittedForm()" type="button">Soumettre</button>
+      </div>
+      <!-- autocompleting methoddd -->
+
+    </form>
+  </div>
+</div>

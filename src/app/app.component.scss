@@ -1,0 +1,73 @@
+// .navTg {
+//   margin-right: 5px;
+// }
+// .myNav {
+//   border-bottom: outset;
+// }
+// .sidenav {
+//   display: none;
+//   position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   width: 20%;
+//   ul li a {
+//     padding: 10px;
+//     font-size: 1.1em;
+//     display: block;
+//     color: white;
+//     border-radius: 5px;
+//   }
+//   ul li a:hover {
+//     color: black;
+//     background: #fff;
+//   }
+//   // ul li a.active {
+//   //   color: black;
+//   //   background: #fff;
+//   // }
+//   .img-content {
+//     width: 100px;
+//     height: 100px;
+//   }
+// }
+
+// .content.navopened {
+//   background-color: rgba(0, 0, 0, 0.4);
+//   .sidenav {
+//     display: initial;
+//   }
+//   .main {
+//     margin-left: 20%;
+//     transition: margin-left 0.5s;
+//     min-height: 100vh;
+//   }
+// }
+
+// .content {
+//   position: relative;
+//   min-height: 100vh;
+// }
+
+// @media screen and (max-width: 640px) {
+//   .sidenav {
+//     width: 30%;
+//     ul li a {
+//       font-size: 1em;
+//     }
+//   }
+// }
+
+// @media screen and (max-width: 470px) {
+//   .sidenav {
+// 	position: relative;
+//     width: 40%;
+//     ul li a {
+//       font-size: 1em;
+//     }
+//   }
+//   .content.navopened {
+// 	.main {
+// 	  margin-left: 0;
+// 	}
+//   }
+// }

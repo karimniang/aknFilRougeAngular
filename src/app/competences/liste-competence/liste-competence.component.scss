@@ -1,0 +1,12 @@
+ul li a {
+    color: black;
+}
+ul li a:hover {
+    color: white;
+    background:blue;
+}
+@media screen and (max-width: 480px) {
+    .menu-compt {
+        width: 100%;
+    }
+}

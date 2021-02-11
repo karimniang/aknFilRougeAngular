@@ -1,0 +1,30 @@
+<div class="card">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><h4> {{this.referentiel.libelle}}</h4>
+            <a [routerLink]="[ '/accueil/referentiel/edit',referentiel.id ]"
+                class="btn btn-sm btn-outline-warning float-right"><i title="Modifier" class="fas fa-edit"></i></a>
+            <a class="btn btn-sm btn-outline-danger mr-2 float-right" (click)="this.removeReferentiel(referentiel.id)"><i title="Supprimer" class="fas fa-times"></i></a>
+            <span title="Telecharger le referentiel" class="btn btn-sm btn-outline-success float-right mr-2" (click)="generatePdf()"><i class="fas fa-download"></i></span>
+        </li>
+    </ul>
+    <div class="card-body">
+        <p class="card-text">{{this.referentiel.description}}</p>
+        <a  class="btn btn-sm btn-outline-primary mb-2" data-toggle="collapse" href="#collapseExample{{this.referentiel.id}}" role="button" aria-expanded="false" (click)="label($event)" aria-controls="collapseExample">{{labelCollab}}</a>
+        
+        <ul class="list-group list-group-flush collapse" id="collapseExample{{this.referentiel.id}}">
+            <li class="list-group-item">
+                <p>Groupe Competences:</p>
+                <p *ngFor="let grp_competence of referentiel.groupeCompetences">{{grp_competence.libelle}}</p>
+            </li>
+       
+            <li class="list-group-item"><button title="Telecharger le programme" class="btn btn-sm btn-outline-success" (click)="this.openProgramme()">Programme</button></li>
+
+            <li class="list-group-item">{{referentiel.critereEvaluation}}</li>
+        
+            <li class="list-group-item">{{referentiel.critereAdmission}}</li>
+        
+            <!-- <li class="list-group-item"><a [href]="hrfUrl" download="programme.pdf"><button class="btn btn-sm btn-outline-success float-right">Telecharger</button></a></li> -->
+        </ul>
+    </div>
+   
+</div>

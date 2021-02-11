@@ -1,0 +1,90 @@
+<div class="p-4">
+    <h4>Ajouter une compétence</h4>
+    <hr>
+    <form action="" class="w-75 mx-auto" [formGroup]="competenceForm" (ngSubmit)="this.onSubmitForm()">
+        <div *ngIf="!this.id" class="form-group">
+            <label for="">Groupe Competences</label>
+            <select class="form-control" formControlName="groupeCompetence" id="">
+                <option selected>Open this select menu</option>
+                <option *ngFor="let gpComp of groupeCompetences" value="{{gpComp.libelle}}">{{gpComp.libelle}}</option>
+                <!-- <option>groupe 2</option>
+                <option>groupe 3</option> -->
+            </select>
+            <small *ngIf="competenceForm.controls['groupeCompetence'].invalid && (competenceForm.controls['groupeCompetence'].touched || competenceForm.controls['groupeCompetence'].dirty)" id="helpId" class="form-text text-muted">Veuillez choisir un groupe de competences</small>
+        </div>
+        <div class="form-group">
+            <label for="lebelle">Libelle</label>
+            <input type="text" class="form-control" formControlName="libelle" id="" aria-describedby="helpId" placeholder="">
+            <small *ngIf="competenceForm.controls['libelle'].invalid && (competenceForm.controls['libelle'].touched || competenceForm.controls['libelle'].dirty)" id="helpId" class="form-text text-muted">Veuillez renseigner le libelle</small>
+        </div>
+        <div>
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#niveau1"><input type="text" formControlName="libelleNiveau1"
+                            name="niveau1" id="niveauId"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#niveau2"><input type="text" formControlName="libelleNiveau2"
+                            name="niveau2" id="niveauId"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#niveau3"><input type="text" formControlName="libelleNiveau3"
+                            name="niveau2" id="niveauId"></a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div *ngFor="let i of [1,2,3]" class="tab-pane container" [class.active]="i === 1" id="niveau{{i}}">
+                    <div class="form-group">
+                        <label for="">Groupe Action</label>
+                        <textarea class="form-control" formControlName="groupe{{i}}" id="" aria-describedby="helpId"
+                            placeholder=""></textarea>
+                        <small *ngIf="competenceForm.controls['groupe'+i].invalid && (competenceForm.controls['groupe'+i].touched || competenceForm.controls['groupe'+i].dirty)" id="helpId" class="form-text text-muted">Veuillez renseigner les groupes d'actions</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Critere Evaluation</label>
+                        <textarea class="form-control" formControlName="critere{{i}}" id="" aria-describedby="helpId"
+                            placeholder=""></textarea>
+                        <small *ngIf="competenceForm.controls['critere'+i].invalid && (competenceForm.controls['critere'+i].touched || competenceForm.controls['critere'+i].dirty)" id="helpId" class="form-text text-muted">Veuillez renseigner les criteres d'évaluations</small>
+                    </div>
+                    <div>
+                        <small *ngIf="(competenceForm.controls['groupe'+i].invalid && (competenceForm.controls['groupe'+i].touched || competenceForm.controls['groupe'+i].dirty) || competenceForm.controls['critere'+i].invalid && (competenceForm.controls['critere'+i].touched || competenceForm.controls['critere'+i].dirty))" class="text-danger">Veuillez renseigner le niveau 1</small>
+                    </div>
+                </div>
+                <!-- <div class="tab-pane container fade" id="niveau2">
+                    <div class="form-group">
+                        <label for="">Groupe Action</label>
+                        <textarea class="form-control" name="groupe2" id="" aria-describedby="helpId"
+                            placeholder=""></textarea>
+                        <small id="helpId" class="form-text text-muted">Help text</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Critere Evaluation</label>
+                        <textarea class="form-control" name="critere2" id="" aria-describedby="helpId"
+                            placeholder=""></textarea>
+                        <small id="helpId" class="form-text text-muted">Help text</small>
+                    </div>
+                </div>
+                <div class="tab-pane container fade" id="niveau3">
+                    <div class="form-group">
+                        <label for="">Groupe Action</label>
+                        <textarea class="form-control" name="groupe3" id="" aria-describedby="helpId"
+                            placeholder=""></textarea>
+                        <small id="helpId" class="form-text text-muted">Help text</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Critere Evaluation</label>
+                        <textarea class="form-control" name="critere3" id="" aria-describedby="helpId"
+                            placeholder=""></textarea>
+                        <small id="helpId" class="form-text text-muted">Help text</small>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <div class="mt-4">
+            <button type="reset" name="" id="" class="btn btn-danger" btn-lg btn-block>Reset</button>
+            <button type="submit" name="" id="" class="btn btn-primary ml-4" btn-lg btn-block>Soumettre</button>
+        </div>
+    </form>
+</div>

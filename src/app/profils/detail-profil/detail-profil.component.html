@@ -1,0 +1,31 @@
+<div class="p-4">
+    <section>
+        <div class="bg-dark text-white libelle rounded">
+            <h2 class="p-3">Profil : {{this.profil.libelle}}</h2>
+        </div>
+    </section>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Avatar</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Mail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of this.profil.users">
+                <td>avatar</td>
+                <td>{{user.lastname}}</td>
+                <td>{{user.firstname}}</td>
+                <td>{{user.email}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+   <div class="cont-btn">
+    <a [routerLink]="['/accueil/profil/edit',this.profil.id]" class="btn btn-sm btn-outline-warning mr-4">Modifier</a>
+    <a class="btn btn-sm btn-outline-danger" (click)="this.removeProfil(this.profil.id)" >Supprimer</a>
+   </div>
+   <a [routerLink]="[ '/accueil/profil/liste' ]" class="float-right mt-2 btn btn-primary">Liste Profil</a>
+</div>

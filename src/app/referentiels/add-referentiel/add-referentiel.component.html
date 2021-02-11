@@ -1,0 +1,77 @@
+<div class="p-4">
+  <h4>Ajouter une groupe de compétence</h4>
+  <hr>
+  <div class="w-75 mx-auto">
+    <form action="" class="w-75" [formGroup]="this.referentielForm">
+      <div class="form-group">
+        <label for="libelle">Libelle</label>
+        <input type="text" class="form-control" formControlName="libelle" id="" aria-describedby="helpId"
+          placeholder="">
+        <small
+          *ngIf="referentielForm.controls['libelle'].invalid && (referentielForm.controls['libelle'].touched || referentielForm.controls['libelle'].dirty)"
+          id="helpId" class="form-text text-muted">Veuillez renseigner le libelle</small>
+      </div>
+      <div class="form-group">
+        <label for="description">Présentation</label>
+        <textarea class="form-control" formControlName="description" id="" rows="3"></textarea>
+        <small
+          *ngIf="referentielForm.controls['description'].invalid && (referentielForm.controls['description'].touched || referentielForm.controls['description'].dirty)"
+          id="helpId" class="form-text text-muted">Veuillez renseigner la description</small>
+      </div>
+      <div class="form-group">
+        <label for="">Programme</label>
+        <input type="file" class="form-control" (change)="this.selectFile($event)" id="" aria-describedby="helpId"
+          placeholder="">
+        <small
+          *ngIf="referentielForm.controls['programme'].invalid && (referentielForm.controls['programme'].touched || referentielForm.controls['programme'].dirty)"
+          id="helpId" class="form-text text-muted">Veuillez choisir un programme</small>
+      </div>
+      <div class="form-group">
+        <label for="critere_admission">Critere Admissions</label>
+        <textarea class="form-control" formControlName="critereAdmission" id="" rows="3"></textarea>
+        <small
+          *ngIf="referentielForm.controls['critereAdmission'].invalid && (referentielForm.controls['critereAdmission'].touched || referentielForm.controls['critereAdmission'].dirty)"
+          id="helpId" class="form-text text-muted">Veuillez renseigner les criteres d'admission</small>
+      </div>
+      <div class="form-group">
+        <label for="critere_admission">Critere Evaluations</label>
+        <textarea class="form-control" formControlName="critereEvaluation" id="" rows="3"></textarea>
+        <small
+          *ngIf="referentielForm.controls['critereEvaluation'].invalid && (referentielForm.controls['critereEvaluation'].touched || referentielForm.controls['critereEvaluation'].dirty)"
+          id="helpId" class="form-text text-muted">Veuillez renseigner les criteres d'évaluation</small>
+      </div>
+      <div class="form-group">
+        <label for="referentiel">Groupe de competences</label>
+        <div class="ng-autocomplete">
+          <ng-autocomplete [data]="listeLibelle" [searchKeyword]="keyword" (keydown.enter)="onSkillsSetKeydown($event)"
+            formControlName="groupeCompetence" [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate"
+            (selected)="onSkillsSetKeydown($event)">
+          </ng-autocomplete>
+
+          <ng-template #itemTemplate let-item>
+            <a [innerHTML]="item.libelle"></a>
+          </ng-template>
+
+          <ng-template #notFoundTemplate let-notFound>
+            <div [innerHTML]="notFound"></div>
+          </ng-template>
+        </div>
+
+      </div>
+      <div class="row mb-2">
+        <div *ngFor="let oneGroupeCompetence of groupeCompetences; let i = index" class="roundedcorner">
+          {{oneGroupeCompetence}}
+          <i title="Supprimer ce referentiel" class="fa fa-times-circle" style="font-size:20px;color:green;"
+            (click)="dropSkill(i)"></i>
+        </div>
+        <small *ngIf="this.referentielForm.valid && (this.groupeCompetences.length === 0)" id="helpId"
+          class="form-text text-muted">Veuillez renseigner les
+          groupe de competences</small>
+      </div>
+      <div>
+        <button type="reset" class="btn btn-danger" (click)="this.groupeCompetences =[]">Reset</button>
+        <button class="btn btn-primary ml-4" (click)="onSubmitForm()" type="button">Soumettre</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+#imgPromo {
+    height: 20vh;
+    width: 100%;
+}
+
+.badge {
+    height: 70px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    
+}
+
+.minou :hover{
+    background-color:cornflowerblue;
+}
+
+.badge.active {
+    background-color:cornflowerblue;
+}

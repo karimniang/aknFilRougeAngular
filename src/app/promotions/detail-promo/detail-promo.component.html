@@ -1,0 +1,105 @@
+<div class="p-4">
+    <!-- <button type="button" class="btn btn-primary">Apprenants <span class="badge">{{this.promotion.apprenants.length}}</span></button> -->
+    <div *ngIf="this.promotionAdded">
+        <div id="todownload">
+            <div class="row">
+                <div class="col-sm-5">
+                    <img src="{{'data:image/jpg;base64,'+this.promotionAdded.image}}" id="imgPromo" alt="avatar promo">
+                </div>
+                <div class="col-sm-4">
+                    <p>Titre: {{this.promotionAdded.titre |uppercase}}</p>
+                    <hr>
+                    <p>Apprenants de la {{this.promotionAdded.titre |uppercase }} de la Sonatel Academy</p>
+                </div>
+                <div class="col-sm-3">
+                    <p><i class="fas fa-calendar-week"></i> Du {{this.promotionAdded.dateDebut |date}} au
+                        {{this.promotionAdded.dateFin |date}}</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Lieu {{this.promotionAdded.lieu}}</p>
+                    <p><i class="fas fa-user-friends"></i> {{this.promotionAdded.apprenants.length}} Apprenants</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-6">
+                    <p style="text-decoration: underline;">Referentiels de la promo :</p>
+                    <ul class="list-group">
+                        <li *ngFor="let ref of this.promotionAdded.referentiels" class="list-group-item">
+                            <p>{{ref.libelle}}</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-6">
+                    <p style="text-decoration: underline;">Fomateurs de la promo :</p>
+                    <ul class="list-group">
+                        <li *ngFor="let form of this.promotionAdded.formateurs" class="list-group-item">
+                            <p>{{"Mr "+form.lastname}}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <br>
+            <p>Apprenants de la promo :</p>
+            <div class="row">
+                <app-apprenant-card
+                    *ngFor="let oneApprenant of this.promotionAdded.apprenants| slice: (page-1) * pageSize : page * pageSize"
+                    [apprenant]="oneApprenant" [idPromo]="this.promotionAdded.id" class="col-sm-3"></app-apprenant-card>
+            </div>
+            <div class="">
+                <ngb-pagination [(page)]="page" [pageSize]="pageSize"
+                [collectionSize]="this.promotionAdded.apprenants.length">
+                </ngb-pagination>
+            </div>
+            <div class="mt-4 w-50 mx-auto">
+                <button class="btn btn-sm btn-outline-primary" (click)="this.ajoutApp()" (keydown.enter)="$event.preventDefault()" >Ajouter un apprenant</button>
+                <button *ngIf="this.show" class="btn btn-sm btn-outline-warning ml-4" (click)="this.annulation()">Annuler</button>
+                <form name="form" [formGroup]="this.apprenantForm">
+                    <div *ngIf="this.show">
+
+                        <div class="row">
+                            <div class="form-group col-sm-6 mt-2">
+                                <label for="email">Email Apprenant</label>
+                                <input class="form-control" formControlName="email" type="email"
+                                    (keydown.enter)="this.onApprenantKeyDown()" id="email" aria-describedby="helpId"
+                                    placeholder="">
+                                <span *ngIf="
+                                    apprenantForm.controls['email'].invalid &&
+                                    (apprenantForm.controls['email'].dirty ||
+                                    apprenantForm.controls['email'].touched)" class="text-danger">
+                                    <div *ngIf="this.apprenantForm.controls.email.errors.pattern">L'email saisi est
+                                        invalide.</div>
+                                </span>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="fichier">Apprenants Par Csv</label>
+                                <input type="file" (change)="changeListener($event)" class="form-control" name="fichier"
+                                    id="fichier" aria-describedby="helpId" placeholder="">
+                                <div *ngIf="crud">
+                                    <small *ngIf="this.typeFile !='text/csv' ">Seuls les fichiers de type csv sont acceptés</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-2 ml-2">
+                            <div *ngFor="let apprenant of apprenants; let i = index"
+                                class="btn btn-sm btn-outline-danger mr-2">
+                                {{apprenant}}
+                                <i title="Supprimer cet apprenant" class="fa fa-times-circle"
+                                    style="font-size:20px;color:green;" (click)="dropApprenant(i)"></i>
+                            </div>
+                            <small *ngIf="this.apprenants.length === 0">Veuillez renseigner au moins un
+                                apprenant</small>
+                        </div>
+                        <div>
+                            <button type="button" (click)="onSubmitForm()"
+                                class="btn btn-sm btn-outline-success ml-4" [disabled]="(this.apprenants.length == 0 && this.apprenantsCSV.length == 0) || (this.typeFile && this.typeFile !='text/csv' ) ">Enregistrer</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <button type="button" (click)="this.captureScreen()" class="btn btn-outline-success">Telecharger la
+            promotion</button>
+        <a class="btn btn-outline-primary ml-4" href="/accueil/promo/liste"> Liste des promotions</a>
+    </div>
+</div>

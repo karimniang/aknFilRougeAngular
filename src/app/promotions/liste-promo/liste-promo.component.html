@@ -1,0 +1,11 @@
+<div class="p-4">
+    <h4 class="text-center">Liste des promotions</h4>
+    <a title="Ajouter une promotion" [routerLink]="[ '/accueil/promo/add' ]" class="btn btn-outline-primary mb-4"><i class="fas fa-plus"></i></a>
+    <div class="row">
+        <app-item-promotion class="col-sm-3 m-2" *ngFor="let promo of this.promotions| slice: (page-1) * pageSize : page * pageSize" [promotion]="promo"></app-item-promotion>
+    </div>
+    <ngb-pagination
+      [(page)]="page"
+      [pageSize]="pageSize"
+      [collectionSize]="this.promotions.length"></ngb-pagination>
+</div>

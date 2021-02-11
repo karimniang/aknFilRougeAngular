@@ -1,0 +1,43 @@
+<div class="p-4">
+    <section>
+        <div class="bg-dark text-white libelle rounded">
+            <h2 class="p-3">Profil Sortie: Developpeur Front</h2>
+        </div>
+    </section>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Avatar</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Mail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>avatar</td>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+            <tr>
+                <td>avatar</td>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+            </tr>
+            <tr>
+                <td>avatar</td>
+                <td>Larry the Bird</td>
+                <td>Thornton</td>
+                <td>@twitter</td>
+            </tr>
+        </tbody>
+    </table>
+
+   <div class="cont-btn">
+    <a [routerLink]="['/accueil/profil-sortie/edit',1]" class="btn btn-sm btn-outline-warning mr-4">Modifier</a>
+    <a class="btn btn-sm btn-outline-danger">Supprimer</a>
+   </div>
+   <a [routerLink]="[ '/accueil/profil-sortie/liste' ]" class="float-right mt-2 btn btn-primary">Liste Profil</a>
+</div>

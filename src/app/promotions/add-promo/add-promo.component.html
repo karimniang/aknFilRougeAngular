@@ -1,0 +1,202 @@
+<div class="p-4">
+  <h4>Ajouter une promotion</h4>
+  <hr>
+  <div class="w-75 mx-auto">
+      <!-- progress-bar -->
+      <div id="stepper1" class="bs-stepper">
+        <div class="bs-stepper-header">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="step" data-target="#test-l-1">
+                <button class="step-trigger">
+                  <span class="bs-stepper-circle">1</span>
+                  <span class="bs-stepper-label">Basic Infos</span>
+                </button>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="step" data-target="#test-l-2">
+                <button class="step-trigger">
+                  <span class="bs-stepper-circle">2</span>
+                  <span class="bs-stepper-label">Paramétres</span>
+                </button>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="step" data-target="#test-l-3">
+                <button class="step-trigger">
+                  <span class="bs-stepper-circle">3</span>
+                  <span class="bs-stepper-label">Image</span>
+                </button>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="step" data-target="#test-l-4">
+                <button class="step-trigger">
+                  <span class="bs-stepper-circle">4</span>
+                  <span class="bs-stepper-label">Apprenants</span>
+                </button>
+              </div>
+            </div>
+          </div>  
+        </div>
+        <div class="bs-stepper-content">
+          <form name="form" [formGroup]="this.promoForm">
+            <div id="test-l-1" class="content">
+              <div class="form-group mb-4">
+                <label for="langue">Langue</label>
+                <select class="form-control" formControlName="langue" id="">
+                  <!-- <option selected>Open this select menu</option> -->
+                  <option value="Francais">Français</option>
+                  <option value="Anglais">Anglais</option>
+                </select>
+                <small *ngIf="promoForm.controls['langue'].invalid && (promoForm.controls['langue'].touched || promoForm.controls['langue'].dirty)"
+                id="helpId" class="form-text text-muted">Veuillez renseigner la langue</small>
+              </div>
+              <div class="form-group mb-4">
+                <label for="titre">Titre</label>
+                <input type="text" class="form-control" formControlName="titre" id="" aria-describedby="helpId" placeholder="">
+                <small *ngIf="promoForm.controls['titre'].invalid && (promoForm.controls['titre'].touched || promoForm.controls['titre'].dirty)"
+                id="helpId" class="form-text text-muted">Veuillez renseigner le titre</small>
+              </div>
+              <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" formControlName="description" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                <small *ngIf="promoForm.controls['description'].invalid && (promoForm.controls['description'].touched || promoForm.controls['description'].dirty)"
+                id="helpId" class="form-text text-muted">Veuillez renseigner la description</small>
+              </div>
+              <div class="form-group mb-4">
+                <label for="fabrique">Fabrique</label>
+                <select class="form-control" formControlName="fabrique" id="">
+                  <!-- <option selected>Open this select menu</option> -->
+                  <option value="ODC">ODC</option>
+                  <option value="Simplon">Simplon</option>
+                </select>
+                <small *ngIf="promoForm.controls['fabrique'].invalid && (promoForm.controls['fabrique'].touched || promoForm.controls['fabrique'].dirty)"
+                id="helpId" class="form-text text-muted">Veuillez renseigner la fabrique</small>
+              </div>
+              <div class="form-group mb-4">
+                <label for="refAgate">Reference Agate</label>
+                <input type="text" class="form-control" formControlName="refAgate" id="" aria-describedby="helpId" placeholder="">
+                <small *ngIf="promoForm.controls['refAgate'].invalid && (promoForm.controls['refAgate'].touched || promoForm.controls['refAgate'].dirty)"
+                id="helpId" class="form-text text-muted">Veuillez renseigner le référence agate</small>
+              </div>
+              <button (click)="next()" type="button" class="btn btn-outline-primary ml-4">Next</button>
+              <!-- <button (click)="captureScreen()">njhk;</button> -->
+            </div>
+            <div id="test-l-2" class="content">
+              <!-- <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+              </div> -->
+              <div class="form-group mb-4">                          
+                <label for="dateDebut">Date Debut</label>
+                <input type="date" class="form-control" formControlName="dateDebut" id="" aria-describedby="helpId" placeholder="">
+                <small *ngIf="promoForm.controls['dateDebut'].invalid && (promoForm.controls['dateDebut'].touched || promoForm.controls['dateDebut'].dirty)"
+                id="helpId" class="form-text text-muted">Veuillez renseigner la date de debut</small>                           
+              </div>
+              <div class="form-group mb-4">
+                <label for="dateFin">Date Fin</label>
+                <input type="date" class="form-control" formControlName="dateFin" id="" aria-describedby="helpId" placeholder="">
+                <small *ngIf="promoForm.controls['dateFin'].invalid && (promoForm.controls['dateFin'].touched || promoForm.controls['dateFin'].dirty)"
+                id="helpId" class="form-text text-muted">Veuillez renseigner la date de Fin</small>
+              </div>
+              <!-- Referentiels -->
+              <div class="form-group">
+                <label for="referentiel">Referentiels</label>
+                <!-- <input class="form-control" type="text" id="referentiel" formControlName="referentiel" placeholder="Enter each Skills Set and hit 'Enter' Key."   
+                [(ngModel)]="referentiel" (keydown.enter)="onSkillsSetKeydown()" /> -->
+                <div class="ng-autocomplete w-100">
+                  <ng-autocomplete [data]="listeLibelle" [searchKeyword]="keyword" (keydown.enter)="onSkillsSetKeydown($event)" formControlName="referentiel" [itemTemplate]="itemTemplate"
+                    [notFoundTemplate]="notFoundTemplate" (selected)="onSkillsSetKeydown($event)">
+                  </ng-autocomplete>
+      
+                  <ng-template #itemTemplate let-item>
+                    <a [innerHTML]="item.libelle"></a>
+                  </ng-template>
+        
+                  <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                  </ng-template>
+                </div>
+              </div>
+              <div class="row mb-2 ml-2">  
+                <div *ngFor="let referentiel of referentiels; let i = index" class="roundedcorner">  
+                  {{referentiel}}   
+                  <i title="Supprimer ce referentiel" class="fa fa-times-circle" style="font-size:20px;color:green;" (click)="dropSkill(i)"></i>  
+                </div>
+                <small *ngIf="this.referentiels.length === 0">Veuillez renseigner au moins un referentiel</small>  
+              </div>
+              <!-- Formateurs -->
+              <div class="form-group">
+                <label for="referentiel">Formateurs</label>
+                <div class="ng-autocomplete w-100">
+                  <ng-autocomplete [data]="this.listeFormateur" [searchKeyword]="this.keywordFormateur" formControlName="formateur" [itemTemplate]="itemTemplateFormateur"
+                    [notFoundTemplate]="notFoundTemplateFormateur" (selected)="onformateursSetKeydown($event)">
+                  </ng-autocomplete>
+      
+                  <ng-template #itemTemplateFormateur let-item>
+                    <a [innerHTML]="this.item.firstname"></a>
+                  </ng-template>
+        
+                  <ng-template #notFoundTemplateFormateur let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                  </ng-template>
+                </div>
+              </div>
+              <div class="row mb-2 ml-2">  
+                <div *ngFor="let formateur of formateurs; let i = index" class="roundedcorner">  
+                  {{formateur}}   
+                  <i title="Supprimer ce formateur" class="fa fa-times-circle" style="font-size:20px;color:green;" (click)="dropFormateur(i)"></i>  
+                </div>
+                <small *ngIf="this.formateurs.length === 0">Veuillez renseigner au moins un formateur</small>  
+              </div>
+              <button (click)="previous()" type="button" class="btn btn-outline-success">Previous</button>
+              <button (click)="next()" type="button" class="btn btn-outline-primary ml-4">Next</button>
+            </div>
+            <div id="test-l-3" class="content">
+              <div class="form-group">
+                <label for="image">Image Promo</label>
+                <input type="file" class="form-control" (change)="this.selectFile($event)"  id="" aria-describedby="helpId" placeholder="">
+                <small *ngIf="!this.fileTest" id="helpId" class="form-text text-danger">Veuillez renseigner l'image de la promo</small>
+              </div>
+              <button (click)="previous()" type="button" class="btn btn-outline-success">Previous</button>
+              <button (click)="next()" type="button" class="btn btn-outline-primary ml-4">Next</button>
+            </div>
+            <div id="test-l-4" class="content">
+              <div class="row">
+                <div class="form-group col-sm-6">
+                  <label for="">Apprenants</label>
+                  <input type="email" formControlName="apprenant" (keydown.enter)="this.onApprenantKeyDown()" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                  <small id="helpId" class="text-muted">Email Apprenant</small>
+                  <span *ngIf="
+                    promoForm.controls['apprenant'].invalid &&
+                    (promoForm.controls['apprenant'].dirty ||
+                    promoForm.controls['apprenant'].touched)" 
+                    class="text-danger">
+                    <div *ngIf="this.promoForm.controls.apprenant.errors.pattern">L'email saisi est invalide.</div>
+                  </span>
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="fichier">Apprenants Par Csv</label>
+                  <input type="file" (change)="changeListener($event)" class="form-control" formControlName="fichier" id="" aria-describedby="helpId" placeholder="">
+                </div>
+              </div>
+              <div class="row mb-2 ml-2">  
+                <div *ngFor="let apprenant of apprenants; let i = index" class="btn btn-sm btn-outline-danger mr-2">  
+                  {{apprenant}}   
+                  <i title="Supprimer cet apprenant" class="fa fa-times-circle" style="font-size:20px;color:green;" (click)="dropApprenant(i)"></i>  
+                </div>
+                <small *ngIf="this.apprenantsCSV.length === 0 && this.apprenants.length === 0">Veuillez renseigner au moins un apprenant</small>
+              </div>
+              <button (click)="previous()" type="button" class="btn btn-outline-success">Previous</button>
+              <button type="reset" class="btn btn-danger ml-2">Reset</button>
+              <button type="button" class="btn btn-primary ml-4" (click)="onSubmitForm()" [disabled]="!this.fileTest || !this.promoForm.valid || this.formateurs.length === 0 || this.referentiels.length === 0 || (this.apprenantsCSV.length === 0 && this.apprenants.length === 0)"  >Submit</button>
+              <small *ngIf="!this.fileTest || !this.promoForm.valid || this.formateurs.length === 0 || this.referentiels.length === 0 || this.apprenantsCSV.length === 0" class="row mt-4 text-danger">Veuillez renseigner les champs pour valider le formulaire</small>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- finish -->
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="card" style="width: 18rem;">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">{{this.groupeTag.libelle}}
+        <a [routerLink]="[ '/accueil/grpe-tags/edit',groupeTag.id ]" class="btn btn-sm btn-outline-warning float-right"><i class="fas fa-edit"></i></a>
+        <a class="btn btn-sm btn-outline-danger mr-2 float-right"><i class="fas fa-times"></i></a></li>
+    </ul>
+    <div class="card-body">
+      <p class="card-text">{{this.groupeTag.description}}</p>
+    </div>
+    <hr>
+    <div class="card-body">
+        <!-- <button data-toggle="collapse" data-target="#demo" class="btn btn-sm btn-primary">Tags</button>
+        <div id="demo" class="collapse">
+            Lorem ipsum dolor text....
+        </div> -->
+        <button  class="btn btn-sm btn-primary collapsible">Tags</button>
+        <div class="content">
+            <hr>
+            <p *ngFor="let tag of groupeTag.tags">{{tag.libelle}}</p>
+        </div>
+    </div>
+    <!-- <ul class="list-group list-group-flush">
+      <li *ngFor="let competence of grpComp.competences" class="list-group-item">{{competence.libelle}}</li>
+    </ul> -->
+  </div>

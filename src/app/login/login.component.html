@@ -1,0 +1,43 @@
+<div class="h-100">
+    <div class="row">
+      <div class="col-md-7 section-l">
+        <h1 class="title display-4">Coding for better life !</h1>
+      </div>
+      <div class="col-md-5 section-r">
+        <div class="card shadow">
+          <img class="card-img-top logo" src="../../assets/logo.png" alt="">
+          <div class="card-body">
+            <form action="" class="form"  name="form" (ngSubmit)="this.onSubmitLog()" #f="ngForm">
+              <h1 class="card-title mb-2 mt-2">Connexion</h1>
+              <div class="row">
+                <div class="col-md-9">
+                  <div class="form-group mb-5">
+                    <label for="">Username</label>
+                    <input type="text" class="form-control" name="username" [(ngModel)]="username" id="userId" aria-describedby="usernameHelpId" >
+                    <small *ngIf="f.submitted && !usernameIsvalide" class="form-text text-danger">Please enter your username</small>
+                  </div>
+                </div>
+                <div class="col-md-9">
+                  <div class="form-group mb-3">
+                    <label for="">Password</label>
+                    <input type="password" class="form-control" name="password" [(ngModel)]="password" id="passId" >
+                    <small *ngIf="f.submitted && !passwordIsvalide" class="form-text text-danger">Please enter your password</small>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <button  class="btn btn-lg btn-secondary m-2">forgot password?</button>
+                  <button type="submit" class="btn btn-lg btn-dark m-2">Submit</button>
+
+                </div>
+              </div>
+              <span *ngIf="!isIn" class="text-danger form-text">Mot de passe incorrect</span>
+            </form>
+          </div>
+        </div>
+        
+      </div>
+      <div class="container text-center">
+        <p>Coded with &hearts; by SA.</p>
+    </div>
+    </div>
+  </div>

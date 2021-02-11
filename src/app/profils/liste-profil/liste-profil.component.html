@@ -1,0 +1,42 @@
+<div class="p-4">
+  <h4 class="text-center">Liste des profils</h4>
+    <a [routerLink]="[ '/accueil/profil/add' ]" class="float-right btn btn-outline-primary mb-2"><i title="Ajouter" class="fas fa-plus"></i></a>
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Libelle</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let profil of profils| slice: (page-1) * pageSize : page * pageSize">
+            <td>{{profil.libelle}}</td>
+            <td>
+                <a [routerLink]="['/accueil/profil/detail',profil.id]" class="btn btn-sm btn-outline-info mr-4"><i title="Detail Profil" class="fas fa-list-ul"></i></a>
+                <a [routerLink]="['/accueil/profil/edit',profil.id]" class="btn btn-sm btn-outline-warning mr-4"><i title="Modifier" class="fas fa-edit"></i></a>
+                <a title="Supprimer" (click)="this.removeProfil(profil.id)" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash-alt"></i></a>
+            </td>
+          </tr>
+          <!-- <tr>
+            <td>Libelle 2</td>
+            <td>
+                <a [routerLink]="['/accueil/profil/detail',1]" class="btn btn-sm btn-outline-info mr-4"><i class="fas fa-list-ul"></i></a>
+                <a [routerLink]="['/accueil/profil/edit',1]" class="btn btn-sm btn-outline-warning mr-4"><i class="fas fa-edit"></i></a>
+                <a class="btn btn-sm btn-outline-danger"><i class="fas fa-trash-alt"></i></a>
+            </td>
+          </tr>
+          <tr>
+            <td>Libelle 3</td>
+            <td>
+                <a [routerLink]="['/accueil/profil/detail',1]" class="btn btn-sm btn-outline-info mr-4"><i class="fas fa-list-ul"></i></a>
+                <a [routerLink]="['/accueil/profil/edit',1]" class="btn btn-sm btn-outline-warning mr-4"><i class="fas fa-edit"></i></a>
+                <a class="btn btn-sm btn-outline-danger"><i class="fas fa-trash-alt"></i></a>
+            </td>
+          </tr> -->
+        </tbody>
+      </table>
+      <ngb-pagination
+      [(page)]="page"
+      [pageSize]="pageSize"
+      [collectionSize]="profils.length"></ngb-pagination>
+</div>

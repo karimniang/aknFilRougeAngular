@@ -1,0 +1,57 @@
+<div class="p-4">
+  <!-- <p>accueil-promo works!</p> -->
+  <div class="w-25 mx-auto mb-4">
+    <select [(ngModel)]="model" class="form-control" (change)="this.promoChoice()">
+      <option *ngFor="let item of this.promotions" [value]="item.id">{{item.titre}}</option>
+    </select>
+  </div>
+  <!-- <button type="button" class="btn btn-primary">Apprenants <span class="badge">{{this.promotions[0].apprenants.length}}</span></button> -->
+  <div *ngIf="this.promoSelected">
+    <div class="row shadow p-2">
+      <div class="col-sm-5">
+        <img *ngIf="this.promoSelected.image" src="{{'data:image/jpg;base64,'+this.promoSelected.image}}" id="imgPromo"
+          alt="avatar promo">
+      </div>
+      <div class="col-sm-4">
+        <p>{{this.promoSelected.titre |uppercase}}</p>
+        <hr>
+        <p>Apprenants de la {{this.promoSelected.titre |uppercase }} de la Sonatel Academy</p>
+      </div>
+      <div class="col-sm-3">
+        <p><i class="fas fa-calendar-week"></i> Du {{this.promoSelected.dateDebut |date}} au
+          {{this.promoSelected.dateFin |date}}</p>
+        <p><i class="fas fa-map-marker-alt"></i> Lieu {{this.promoSelected.lieu}}</p>
+        <p><i class="fas fa-user-friends"></i> {{this.promoSelected.apprenants.length}} Apprenants</p>
+      </div>
+    </div>
+    <div class="shadow p-2">
+      <div class="row">
+        <i class="fas fa-users mt-1 ml-4 mr-2"></i> <h4 class="bold">Les apprenants de la promo</h4>
+      </div>
+      <div class="row">
+        <div class="col-sm-3" style="height: 300px; overflow-y: scroll;"> 
+            <ul class="text-center p-2 navbar-nav minou" >
+              <li class="nav-item border mb-1 badge" [id]="i" (click)="this.clickApp(i)" *ngFor="let app of this.promoSelected.apprenants; let i=index">
+                <h6 class="mt-1">{{app.firstname+" "+app.lastname}}</h6>
+                <span>{{app.email}}</span>
+              </li>
+            </ul>
+        </div>
+        <div class="col-sm-7">
+          <p class="font-weight-bold">{{this.promoSelected.apprenants[0].firstname+" "}}{{this.promoSelected.apprenants[0].lastname|uppercase}}</p>
+          <div class="row">
+            <div class="col-sm-6">
+              <div style="display: block">
+                <canvas baseChart
+                  [data]="this.doughnutChartData"
+                  [labels]="doughnutChartLabels"
+                  [chartType]="doughnutChartType">
+                </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

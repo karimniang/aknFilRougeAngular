@@ -1,0 +1,7 @@
+<div class="card p-2">
+    <p>Nom : {{this.apprenant.lastname}}</p>
+    <p>Prenom : {{this.apprenant.firstname}}</p>
+    <p>Email : {{this.apprenant.email}}</p>
+    <qrcode [qrdata]="'Prenom:'+this.apprenant.firstname+' Nom:'+this.apprenant.lastname+' Email:'+this.apprenant.email" [size]="256" [level]="'M'" usesvg="true"></qrcode>
+    <button [hidden]="!this.showButton" (click)="this.relanceMail(apprenant.id)" [class]="this.btnStyle">{{this.buttonLabel}}</button>
+</div>
